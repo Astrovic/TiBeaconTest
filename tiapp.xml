@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+  <id>com.astrovicApps.beacontest</id>
+  <name>BeaconTest</name>
+  <version>1.0</version>
+  <publisher>not specified</publisher>
+  <url>unspecified</url>
+  <description/>
+  <copyright>not specified</copyright>
+  <icon>appicon.png</icon>
+  <fullscreen>false</fullscreen>
+  <navbar-hidden>false</navbar-hidden>
+  <analytics>true</analytics>
+  <guid>cca21f7e-82fb-4398-9bbb-0c61abc3241e</guid>
+  <property name="ti.ui.defaultunit" type="string">dp</property>
+  <property name="run-on-main-thread" type="bool">true</property>
+  <ios>
+    <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
+    <use-app-thinning>true</use-app-thinning>
+    <plist>
+      <dict>
+        <key>UISupportedInterfaceOrientations~iphone</key>
+        <array>
+          <string>UIInterfaceOrientationPortrait</string>
+        </array>
+        <key>UISupportedInterfaceOrientations~ipad</key>
+        <array>
+          <string>UIInterfaceOrientationPortrait</string>
+          <string>UIInterfaceOrientationPortraitUpsideDown</string>
+          <string>UIInterfaceOrientationLandscapeLeft</string>
+          <string>UIInterfaceOrientationLandscapeRight</string>
+        </array>
+        <key>UIRequiresPersistentWiFi</key>
+        <false/>
+        <key>UIPrerenderedIcon</key>
+        <false/>
+        <key>UIStatusBarHidden</key>
+        <false/>
+        <key>UIStatusBarStyle</key>
+        <string>UIStatusBarStyleDefault</string>
+
+        <!-- Permessi per l'uso dei beacons -->
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>BeaconTest necessita del GPS per poter interagire coi beacon.</string>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>BeaconTest necessita del GPS per poter interagire coi beacon.</string>
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>BeaconTest necessita del GPS per poter interagire coi beacon.</string>
+        <key>NSBluetoothPeripheralUsageDescription</key>
+        <string>BeaconTest necessita del Bluetooth per poter interagire coi beacon.</string>
+        <key>NSBluetoothAlwaysUsageDescription</key>
+        <string>BeaconTest necessita del Bluetooth per poter interagire coi beacon.</string>
+        <!-- Use when requiring background execution -->
+        <key>UIBackgroundModes</key>
+        <array>
+          <!-- Use when acting as a central -->
+          <string>bluetooth-central</string>
+          <!-- Use when acting as a peripheral -->
+          <string>bluetooth-peripheral</string>
+        </array>
+
+      </dict>
+    </plist>
+  </ios>
+  <android xmlns:android="http://schemas.android.com/apk/res/android">
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1">
+      <uses-sdk android:targetSdkVersion="29"/>
+      <!--permessi per i beacons -->
+      <uses-permission android:name="android.permission.BLUETOOTH"/>
+      <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+      <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+      <application>
+        <service android:enabled="true" android:exported="true" android:isolatedProcess="false" android:label="iBeacon" android:name="com.radiusnetworks.ibeacon.service.IBeaconService"></service>
+        <service android:enabled="true" android:name="com.radiusnetworks.ibeacon.IBeaconIntentProcessor">
+          <meta-data android:name="background" android:value="true"/>
+          <intent-filter android:priority="1">
+            <action android:name="com.astrovicapp.beacontest.DID_RANGING"/>
+            <action android:name="com.astrovicapp.beacontest.DID_MONITORING"/>
+          </intent-filter>
+        </service>
+      </application>
+      <!--permessi per i beacons -->
+    </manifest>
+  </android>
+  <modules>
+    <module platform="iphone" version="0.11.0">org.beuckman.tibeacons</module>
+    <module platform="android" version="2.0.0">com.liferay.beacons</module>
+    <module platform="android" version="1.0.0">bencoding.android.tools</module>
+    <module>ti.bluetooth</module>
+    <module platform="android">hyperloop</module>
+    <module platform="iphone">hyperloop</module>
+    <module platform="commonjs">ti.cloud</module>
+  </modules>
+  <deployment-targets>
+    <target device="android">true</target>
+    <target device="ipad">true</target>
+    <target device="iphone">true</target>
+  </deployment-targets>
+  <sdk-version>9.0.0.GA</sdk-version>
+  <plugins>
+    <plugin version="1.0">ti.alloy</plugin>
+  </plugins>
+  <property name="appc-app-id" type="string">5dd655630c01d501b8697a6b</property>
+  <property name="acs-authbase-url-development" type="string"></property>
+  <property name="acs-base-url-development" type="string">https://api.cloud.appcelerator.com</property>
+  <property name="acs-oauth-secret-development" type="string">SxCAR0h2PpRVPgS9oKloYQZ36bkJC8tl</property>
+  <property name="acs-oauth-key-development" type="string">Qbsb9E68m48eE4W4nz2uirnEqi4z42fz</property>
+  <property name="acs-api-key-development" type="string">wiFafSYhwjXF54CiHMF0VW9YSsJLl3ky</property>
+  <property name="acs-username-development" type="string">appc_app_user_dev</property>
+  <property name="acs-password-development" type="string">MaLXKWVZxUnS4rv1hg</property>
+  <property name="acs-authbase-url-production" type="string"></property>
+  <property name="acs-base-url-production" type="string">https://api.cloud.appcelerator.com</property>
+  <property name="acs-oauth-secret-production" type="string">3GoXQw5IVyoMgEh1MNet5picyfURRE1N</property>
+  <property name="acs-oauth-key-production" type="string">TKKpxBGA9OhhGeq01H4HfBiEjPoFtQg4</property>
+  <property name="acs-api-key-production" type="string">l567icoN0S37IRvMHekXsFoSJdbJBAI6</property>
+  <property name="acs-username-production" type="string">appc_app_user</property>
+  <property name="acs-password-production" type="string">znxRkRwWAZbka9WteL</property>
+  <property name="appc-org-id" type="string">100001537</property>
+  <property name="appc-creator-user-id" type="string">62c257d8-6891-4aaf-aaef-4de2a552ffe3</property>
+</ti:app>

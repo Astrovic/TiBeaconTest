@@ -1,0 +1,103 @@
+<h1>API&#39;s</h1>
+
+<p>For both Android &amp; iOS, this API is well-suited to be used when your device acts as the central <em>(the client)</em> and wants to use a peripheral .</p>
+
+<p>The iOS API is provided with extra functionality to let your iOS-device act as a peripheral <em>(the server)</em>.</p>
+
+<h2>Overview of API&#39;s</h2>
+
+<ul><li>CentralManager</li><li>PeripheralManager <strong>(iOS only)</strong></li><li>Central <strong>(iOS only)</strong></li><li>Characteristic</li><li>Descriptor <strong>(iOS only)</strong></li><li>Peripheral</li><li>Service</li><li>Constants</li></ul>
+
+<h2><code>CentralManager</code></h2>
+
+<h3>Createable</h3>
+
+<ul><li><code>createCentralManager</code>(args)<ul><li><code>showPowerAlert</code> (Boolean) <strong>(iOS only)</strong></li><li><code>restoreIdentifier</code> (String) <strong>(iOS only)</strong></li></ul></li></ul>
+
+<h3>Methods</h3>
+
+<ul><li><code>isScanning()</code>: Boolean</li><li><code>startScan()</code></li><li><code>startScanWithServices(services)</code><ul><li><code>services</code> ([String]): <strong>Required</strong> - Array of Service-UUID</li></ul></li><li><code>stopScan()</code></li><li><code>connectPeripheral(peripheral, options)</code><ul><li><code>peripheral</code> (Peripheral): <strong>Required</strong></li><li><code>options</code> (Object): <em>Optional</em><ul><li><code>notifyOnConnection</code> (Boolean)</li><li><code>notifyOnDisconnection</code> (Boolean)</li><li><code>notifyOnNotification</code> (Boolean) <strong>(iOS only)</strong></li></ul></li></ul></li><li><code>cancelPeripheralConnection(peripheral)</code><ul><li><code>peripheral</code> (Peripheral): <strong>Required</strong></li></ul></li><li><code>retrievePeripheralsWithIdentifiers(identifiers)</code> <strong>(iOS only)</strong><ul><li><code>identifiers</code> ([String]): <em>Optional</em></li></ul></li><li><code>retrieveConnectedPeripheralsWithServices(serviceUUIDs)</code> <strong>(iOS only)</strong><ul><li><code>serviceUUIDs</code> ([String]): <em>Optional</em></li></ul></li></ul>
+
+<h3>Properties</h3>
+
+<ul><li><code>state</code> (MANAGER<em>STATE</em>*)</li><li><code>scanMode</code> (SCAN<em>MODE</em>*)  <strong>(Android only)</strong></li></ul>
+
+<h3>Events</h3>
+
+<ul><li><code>didUpdateState</code></li><li><code>willRestoreState</code> <strong>(iOS only)</strong></li><li><code>didDiscoverPeripheral</code></li><li><code>didConnectPeripheral</code></li><li><code>didFailToConnectPeripheral</code></li></ul>
+
+<h2><code>PeripheralManager</code> (iOS only)</h2>
+
+<h3>Createable</h3>
+
+<p>createPeripheralManager(args)
+showPowerAlert (Boolean)
+restoreIdentifier(String)</p>
+
+<h3>Methods</h3>
+
+<ul><li><code>isAdvertising</code></li><li><code>startAdvertising(args)</code> (Object)<ul><li><code>localName</code> (String): <em>Optional</em></li><li><code>serviceUUIDs</code> ([String]): String</li></ul></li><li><code>stopAdvertising</code></li><li><code>setDesiredConnectionLatencyForCentral(latency, central)</code><ul><li><code>latency</code> (Number): <strong>Required</strong></li><li><code>central</code> (Central): <strong>Required</strong></li></ul></li><li><code>addService(service)</code><ul><li><code>service</code> (Service): <strong>Required</strong></li></ul></li><li><code>removeService(service)</code><ul><li><code>service</code> (Service): <strong>Required</strong></li></ul></li><li><code>removeAllServices</code></li><li><code>updateValueForCharacteristicOnSubscribedCentrals(value, characteristic, subscribedCentrals)</code><ul><li><code>value</code> (Ti.Blob): <strong>Required</strong></li><li><code>characteristic</code> (Characteristic): <strong>Required</strong></li><li><code>subscribedCentrals</code> ([String]): <strong>Required</strong> - Array of Central-UUID&#39;s</li></ul></li></ul>
+
+<h3>Properties</h3>
+
+<ul><li><code>state</code> (MANAGER<em>STATE</em>*)</li></ul>
+
+<h3>Events</h3>
+
+<ul><li><code>didUpdateState</code></li><li><code>willRestoreState</code></li><li><code>didStartAdvertising</code></li><li><code>didAddService</code></li><li><code>didSubscribeToCharacteristic</code></li><li><code>didUnsubscribeFromCharacteristic</code></li><li><code>didReceiveReadRequest</code></li><li><code>didReceiveWriteRequests</code></li><li><code>readyToUpdateSubscribers</code></li></ul>
+
+<h2><code>Central</code> (iOS only)</h2>
+
+<h3>Properties</h3>
+
+<ul><li><code>maximumUpdateValueLength</code> (Number)</li><li><code>identifier</code> (String)</li></ul>
+
+<h2><code>Characteristic</code></h2>
+
+<h3>Createable</h3>
+
+<ul><li><code>createCharacteristic</code> (args) <strong>(iOS only)</strong><ul><li><code>uuid (String)</code></li><li><code>properties(CHARACTERISTIC_PROPERTY_*)</code></li><li><code>value(Ti.Blob)</code></li><li><code>permissions(ATTRIBUTE_PERMISSIONS_*)</code></li></ul></li></ul>
+
+<h3>Properties</h3>
+
+<ul><li><code>value</code> (Ti.Blob)</li><li><code>uuid</code> (String)</li><li><code>service</code> (Service)  <strong>(iOS only)</strong></li><li><code>properties</code> (CHARACTERISTIC<em>PROPERTY</em>*)  <strong>(iOS only)</strong></li><li><code>isNotifying</code> (Boolean)  <strong>(iOS only)</strong></li><li><code>descriptors</code> ([Descriptor])  <strong>(iOS only)</strong></li></ul>
+
+<h2><code>Descriptor</code> (iOS only)</h2>
+
+<h3>Properties</h3>
+
+<ul><li><code>characteristic</code> (Characteristic)</li><li><code>value</code> (Mixed)</li></ul>
+
+<h2><code>Peripheral</code></h2>
+
+<h3>Methods</h3>
+
+<ul><li><code>readRSSI()</code> <strong>(iOS only)</strong></li><li><code>discoverServices()</code></li><li><code>discoverServices(uuids)</code> <strong>(iOS only)</strong><ul><li><code>uuids</code> ([String])</li></ul></li><li><code>discoverIncludedServicesForService(includedServices, service)</code> <strong>(iOS only)</strong><ul><li><code>includedServices</code> ([Service])</li><li><code>service</code> (Service)</li></ul></li><li><code>discoverCharacteristicsForService(args)</code><ul><li><code>characteristics</code> ([Characteristic]) <strong>(iOS only)</strong></li><li><code>service</code> (Service)</li></ul></li><li><code>readValueForCharacteristic(characteristic)</code> <strong>(iOS only)</strong><ul><li><code>characteristic</code> (Characteristic)</li></ul></li><li><code>maximumWriteValueLengthForType(type)</code> <strong>(iOS only)</strong><ul><li><code>type</code> (CHARACTERISTIC<em>WRITE</em>*)</li></ul></li><li><code>writeValueForCharacteristicWithType(value, characteristic, type)</code><ul><li><code>value</code> (Ti.Blob)</li><li><code>characteristic</code> (Characteristic)</li><li><code>type</code> (CHARACTERISTIC<em>WRITE</em>*) </li></ul></li><li><code>setNotifyValueForCharacteristic(enabled, characteristic)</code><ul><li><code>enabled</code> (Boolean)</li><li><code>characteristic</code> (Characteristic)</li></ul></li><li><code>discoverDescriptorsForCharacteristic</code> <strong>(iOS only)</strong><ul><li><code>characteristic</code> (Characteristic)</li></ul></li><li><code>readValueForDescriptor(descriptor)</code> <strong>(iOS only)</strong><ul><li><code>descriptor</code> (Descriptor)</li></ul></li><li><code>writeValueForDescriptor(value, descriptor)</code> <strong>(iOS only)</strong><ul><li><code>value</code> (Ti.Blob)</li><li><code>descriptor</code> (Descriptor)</li></ul></li></ul>
+
+<h3>Properties</h3>
+
+<ul><li><code>name</code></li><li><code>rssi</code> <strong>(iOS only)</strong></li><li><code>address</code> <strong>(Android only)</strong></li><li><code>state</code> <strong>(iOS only)</strong></li><li><code>services</code></li></ul>
+
+<h3>Events</h3>
+
+<ul><li><code>didDiscoverServices</code></li><li><code>didDiscoverCharacteristicsForService</code></li><li><code>didUpdateValueForCharacteristic</code></li><li><code>didWriteValueForCharacteristic</code></li></ul>
+
+<h2><code>Service</code></h2>
+
+<h3>Properties</h3>
+
+<ul><li><code>isPrimary</code> (Boolean) <strong>(iOS only)</strong></li><li><code>peripheral</code> (Peripheral) <strong>(iOS only)</strong></li><li><code>includedServices</code> ([String]) <strong>(iOS only)</strong></li><li><code>characteristics</code> ([Characteristic])</li><li><code>uuid</code> (String)</li></ul>
+
+<h2><code>Constants</code></h2>
+
+<h3>Crossplatform</h3>
+
+<ul><li><code>MANAGER_STATE_POWERED_OFF (int)</code></li><li><code>MANAGER_STATE_POWERED_ON (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_WRITE_WITH_RESPONSE (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_WRITE_WITHOUT_RESPONSE (int)</code></li></ul>
+
+<h3>Android-only</h3>
+
+<ul><li><code>SCAN_MODE_BALANCED (int)</code></li><li><code>SCAN_MODE_LOW_LATENCY (int)</code></li><li><code>SCAN_MODE_LOW_POWER (int)</code></li><li><code>SCAN_MODE_OPPORTUNISTIC (int)</code></li></ul>
+
+<h3>iOS-only</h3>
+
+<ul><li><code>MANAGER_STATE_UNKNOWN (int)</code></li><li><code>MANAGER_STATE_UNSUPPORTED (int)</code></li><li><code>MANAGER_STATE_UNAUTHORIZED (int)</code></li><li><code>MANAGER_STATE_RESETTING (int)</code></li><li><code>PERIPHERAL_STATE_DISCONNECTED (int)</code></li><li><code>PERIPHERAL_STATE_CONNECTING (int)</code></li><li><code>PERIPHERAL_STATE_CONNECTED (int)</code></li><li><code>PERIPHERAL_STATE_DISCONNECTING (int)</code></li><li><code>PERIPHERAL_MANAGER_CONNECTION_LATENCY_LOW (int)</code></li><li><code>PERIPHERAL_MANAGER_CONNECTION_LATENCY_MEDIUM (int)</code></li><li><code>PERIPHERAL_MANAGER_CONNECTION_LATENCY_HIGH (int)</code></li><li><code>ATT_ERROR_SUCCESS (int)</code></li><li><code>ATT_ERROR_INVALID_HANDLE (int)</code></li><li><code>ATT_ERROR_READ_NOT_PERMITTED (int)</code></li><li><code>ATT_ERROR_NOT_PERMITTED (int)</code></li><li><code>ATT_ERROR_INVALID_PDU (int)</code></li><li><code>ATT_ERROR_INSUFFICIENT_AUTHENTICATION (int)</code></li><li><code>ATT_ERROR_NOT_SUPPORTED (int)</code></li><li><code>ATT_ERROR_INVALID_OFFSET (int)</code></li><li><code>ATT_ERROR_INSUFFICIENT_AUTHORIZATION (int)</code></li><li><code>ATT_ERROR_PREPARE_QUEUE_FULL (int)</code></li><li><code>ATT_ERROR_ATTRIBUTE_NOT_FOUND (int)</code></li><li><code>ATT_ERROR_ATTRIBUTE_NOT_LONG (int)</code></li><li><code>ATT_ERROR_INSUFFICIENT_ENCRYPTION_KEY_SITE (int)</code></li><li><code>ATT_ERROR_INVALID_ATTRIBUTE_VALUE_LENGTH (int)</code></li><li><code>ATT_ERROR_UNLIKELY_ERROR (int)</code></li><li><code>ATT_ERROR_INSUFFICIENT_ENCRYPTION (int)</code></li><li><code>ATT_ERROR_UNSUPPORTED_GROUP_TYPE (int)</code></li><li><code>ATT_ERROR_INSUFFICIENT_RESOURCES (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_BROADCAST (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_READ (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_WRITE (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_NOTIFY (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_INDICATE (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_AUTHENTICATED_SIGNED_WRITES (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_EXTENDED_PROPERTIES (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_NOTIFY_ENCRYPTION_REQUIRED (int)</code></li><li><code>CHARACTERISTIC_PROPERTY_INDICATE_ENCRYPTION_REQUIRED (int)</code></li><li><code>CHARACTERISTIC_WRITE_WITH_RESPONSE (int)</code></li><li><code>CHARACTERISTIC_WRITE_WITHOUT_RESPONSE (int)</code></li><li><code>ATTRIBUTE_PERMISSIONS_READABLE (int)</code></li><li><code>ATTRIBUTE_PERMISSIONS_WRITEABLE (int)</code></li><li><code>ATTRIBUTE_PERMISSIONS_READ_ENCRYPTION_REQUIRED (int)</code></li><li><code>ATTRIBUTE_PERMISSIONS_WRITE_ENCRYPTION_REQUIRED (int)</code></li></ul>

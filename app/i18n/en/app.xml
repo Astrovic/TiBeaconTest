@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="appname">BeaconTest</string>
+	<string name="NSBluetoothAlwaysUsageDescription">BeaconTest necessita del Bluetooth per poter interagire coi beacon.</string>
+	<string name="NSBluetoothPeripheralUsageDescription">BeaconTest necessita del Bluetooth per poter interagire coi beacon.</string>
+	<string name="NSLocationWhenInUseUsageDescription">BeaconTest necessita del GPS per poter interagire coi beacon.</string>
+	<string name="NSLocationAlwaysUsageDescription">BeaconTest necessita del GPS per poter interagire coi beacon.</string>
+	<string name="NSLocationAlwaysAndWhenInUseUsageDescription">BeaconTest necessita del GPS per poter interagire coi beacon.</string>
+</resources>

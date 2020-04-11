@@ -1,0 +1,31 @@
+".container": {
+	backgroundColor:"white",
+	layout: 'vertical'
+}
+
+"TextField": {
+	height: 50,
+	width: "90%",
+	color: "#000",
+	hintTextColor: "#ccc",
+	font: {
+		fontSize: 12
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	borderColor: "#ccc",
+	borderRadius: 10
+}
+
+"Label": {
+	color: "#000",
+	font: {
+		fontSize: 12
+	}
+}
+
+"Button" : {
+	borderColor: "#ccc",
+	borderRadius: 10,
+	width: 200,
+	height: 50
+}

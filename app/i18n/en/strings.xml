@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="appname">BeaconTest</string>
+	<string name="abilita_bluetooth">Abilita il bluetooth</string>
+	<string name="close">Chiudi</string>
+</resources>

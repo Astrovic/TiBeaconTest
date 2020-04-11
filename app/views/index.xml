@@ -1,0 +1,13 @@
+<Alloy>
+	<Window class="container">
+		<TextField id="identifier" top="50" hintText="Inserisci un identifier per il beacon" />
+		<TextField id="uuid" top="20" hintText="UUID (00000000-0000-0000-0000-000000000000)" onChange="uuidChange" />
+		<TextField id="major" top="20" hintText="major" />
+		<TextField id="minor" top="20" hintText="minor" />
+		<Button id="startBtn" top="30" title="START MONITOR" enabled="false" onClick="startMonitor"/>
+		<Button id="stopBtn" top="20" title="STOP MONITOR" enabled="false" onClick="stopMonitor"/>
+		<ScrollView top="30" bottom="20" width="100%">
+			<Label id="log" width="90%" height="Ti.UI.SIZE"/>
+		</ScrollView>
+	</Window>
+</Alloy>
